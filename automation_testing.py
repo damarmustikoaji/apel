@@ -1,21 +1,16 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-# from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 
-usernameValue = "damar"
-passwordValue = "123qwe"
+chromeDriver=Service('./chromedriver_linux64')
+opts = Options()
+opts.headless = True
 
-s = ".wdm/drivers/chromedriver/linux64/102.0.5005.61/chromedriver"
+browser = webdriver.Chrome(options=opts, service=chromeDriver)
 
-driver = webdriver.Chrome(service=s)
-driver.get("https://sebangsa.com")
-masuk = driver.find_element(By.ID, "dropbtn-login")
-masuk.click()
-username = driver.find_element(By.ID, "username")
-password = driver.find_element(By.ID, "password")
-username.send_keys(usernameValue)
-password.send_keys(passwordValue)
-password.send_keys(Keys.RETURN)
-driver.close()
+try:
+    browser.get('https://sebangsa.com')
+    assert 'Sebangsa - Platform Aktivitas Komunitas' == browser.title
+    print('Assert Browser Title [PASS]')
+finally:
+    browser.quit()
