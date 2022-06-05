@@ -30,7 +30,13 @@ jobs:
     - name: Install browser
       run: |
         wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-        && sudo dpkg -i google-chrome*.deb
+        && sudo dpkg -i google-chrome*.deb \
+        && rm google-chrome*.deb \
+        && wget -q https://chromedriver.storage.googleapis.com/101.0.4951.41/chromedriver_linux64.zip \
+        && unzip chromedriver_linux64.zip \
+        && rm chromedriver_linux64.zip \
+        && mv chromedriver /usr/local/bin \
+        && chmod +x /usr/local/bin/chromedriver
     - name: Test with python
       run: |
         python automation_testing.py
