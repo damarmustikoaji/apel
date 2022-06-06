@@ -2,9 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
-chromeDriver=Service('./chromedriver_mac64')
+chromeDriver=Service('./chromedriver_linux64')
 opts = Options()
 opts.headless = True
+
 browser = webdriver.Chrome(options=opts, service=chromeDriver)
 
 try:
