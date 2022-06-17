@@ -11,6 +11,6 @@ browser = webdriver.Chrome(options=opts, service=chromeDriver)
 try:
     browser.get('https://sebangsa.com')
     assert 'Sebangsa - Platform Aktivitas Komunitas' == browser.title
-    print('Assert Browser Title [PASS]')
+    print('TC - 001 Assert Browser Title [PASS]')
 finally:
     browser.quit()
